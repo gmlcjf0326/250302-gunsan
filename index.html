@@ -5,17 +5,20 @@
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0" />
-		<title>군산 나들이 일정</title>
+		<title>🚗군산 나들이 일정</title>
 		<style>
 			:root {
-				--primary-color: #3498db;
-				--secondary-color: #2980b9;
-				--accent-color: #f39c12;
-				--light-color: #ecf0f1;
-				--dark-color: #34495e;
-				--success-color: #2ecc71;
-				--day-bg-1: #e8f4fd;
-				--day-bg-2: #fff8e8;
+				/* 색상 가시성 개선 */
+				--primary-color: #0e5a9e;
+				--secondary-color: #0e5a9e;
+				--accent-color: #ff7d2e;
+				--light-color: #f7f9fc;
+				--dark-color: #000000;
+				--success-color: #e64545;
+				--day-bg-1: #e3f4fc;
+				--day-bg-2: #fff2e6;
+				--gray-color: #3a3a3a;
+				--btn-text-color: #ffffff;
 			}
 
 			* {
@@ -26,7 +29,7 @@
 			}
 
 			body {
-				background-color: #f5f7fa;
+				background-color: #f8f9fa;
 				color: #333;
 				line-height: 1.6;
 				padding: 0;
@@ -48,21 +51,23 @@
 				color: white;
 				text-align: center;
 				padding: 20px 10px;
-				border-radius: 8px 8px 0 0;
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+				border-radius: 12px 12px 0 0;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 				margin-bottom: 15px;
 			}
 
 			h1 {
 				font-size: 24px;
 				margin-bottom: 5px;
+				font-weight: 700;
+				text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 			}
 
 			.day-section {
 				margin-bottom: 20px;
-				border-radius: 8px;
+				border-radius: 12px;
 				overflow: hidden;
-				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+				box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 			}
 
 			.day-header {
@@ -70,6 +75,7 @@
 				font-size: 18px;
 				color: var(--dark-color);
 				font-weight: bold;
+				letter-spacing: 0.5px;
 			}
 
 			.day-1 {
@@ -81,11 +87,11 @@
 			}
 
 			.day-1 .day-header {
-				background-color: rgba(52, 152, 219, 0.2);
+				background-color: rgba(14, 90, 158, 0.2);
 			}
 
 			.day-2 .day-header {
-				background-color: rgba(243, 156, 18, 0.2);
+				background-color: rgba(14, 90, 158, 0.2);
 			}
 
 			.schedule-table {
@@ -95,7 +101,7 @@
 			}
 
 			.schedule-table tr {
-				border-bottom: 1px solid #eee;
+				border-bottom: 1px solid #f0f0f0;
 			}
 
 			.schedule-table tr:last-child {
@@ -111,6 +117,7 @@
 				width: 25%;
 				font-weight: bold;
 				color: var(--dark-color);
+				background-color: rgba(0, 0, 0, 0.02);
 			}
 
 			.info-col {
@@ -126,69 +133,82 @@
 
 			.place-address {
 				font-size: 14px;
-				color: #666;
-				margin-bottom: 8px;
+				color: var(--gray-color);
+				margin-bottom: 12px;
 				line-height: 1.4;
 			}
 
+			/* 버튼 그룹 수정 - 복사 버튼 제거 및 레이아웃 조정 */
 			.button-group {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 5px;
-				margin-top: 8px;
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 2px;
+				margin-top: 10px;
+			}
+
+			/* 장소에 따라 버튼을 1개 또는 2개만 보여줄 때의 스타일 */
+			.button-group.single-row {
+				grid-template-columns: 1fr;
 			}
 
 			.btn {
-				display: inline-flex;
+				display: flex;
 				align-items: center;
-				padding: 6px 12px;
-				border-radius: 4px;
+				justify-content: center;
+				height: 38px;
+				width: 100%;
+				box-sizing: border-box;
+				border-radius: 5px;
 				font-size: 13px;
+				font-weight: 500;
 				cursor: pointer;
 				text-decoration: none;
 				border: none;
-				transition: background-color 0.2s, transform 0.1s;
+				transition: all 0.2s ease;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 			}
 
 			.btn:active {
 				transform: scale(0.97);
+				box-shadow: none;
 			}
 
 			.btn-review {
 				background-color: var(--primary-color);
-				color: white;
+				color: var(--btn-text-color);
+				grid-column: span 2;
 			}
 
 			.btn-review:hover {
-				background-color: var(--secondary-color);
+				background-color: #0c4b85;
 			}
 
 			.btn-tel {
 				background-color: var(--success-color);
-				color: white;
+				color: var(--btn-text-color);
 			}
 
-			.btn-copy {
-				background-color: var(--light-color);
-				color: var(--dark-color);
+			.btn-tel:hover {
+				background-color: #d13939;
 			}
 
 			.btn-map {
 				background-color: var(--accent-color);
-				color: white;
+				color: var(--btn-text-color);
 			}
 
-			.btn i {
-				margin-right: 5px;
+			.btn-map:hover {
+				background-color: #ec6a1a;
 			}
 
 			.icon {
-				width: 14px;
-				height: 14px;
+				width: 16px;
+				height: 16px;
 				display: inline-block;
-				margin-right: 4px;
+				margin-right: 6px;
 				position: relative;
-				top: 2px;
+				top: 1px;
+				stroke-width: 2;
 			}
 
 			.toast {
@@ -196,25 +216,17 @@
 				bottom: 20px;
 				left: 50%;
 				transform: translateX(-50%);
-				background-color: rgba(0, 0, 0, 0.7);
+				background-color: rgba(53, 60, 70, 0.9);
 				color: white;
-				padding: 10px 20px;
-				border-radius: 4px;
+				padding: 12px 25px;
+				border-radius: 30px;
 				display: none;
 				z-index: 1000;
+				font-size: 14px;
+				box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 			}
 
 			@media screen and (max-width: 480px) {
-				.button-group {
-					flex-direction: column;
-					gap: 8px;
-				}
-
-				.btn {
-					width: 100%;
-					justify-content: center;
-				}
-
 				.time-col {
 					width: 30%;
 				}
@@ -222,6 +234,23 @@
 				.info-col {
 					width: 70%;
 				}
+			}
+
+			/* 버튼 깜빡임 효과 수정 */
+			@keyframes pulse {
+				0% {
+					box-shadow: 0 0 0 0 rgba(14, 90, 158, 0.5);
+				}
+				70% {
+					box-shadow: 0 0 0 8px rgba(14, 90, 158, 0);
+				}
+				100% {
+					box-shadow: 0 0 0 0 rgba(14, 90, 158, 0);
+				}
+			}
+
+			.btn-review {
+				animation: pulse 2s infinite;
 			}
 		</style>
 	</head>
@@ -251,28 +280,8 @@
 										stroke-width="2">
 										<path
 											d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg
-									>0507-1435-8883
+									>전화하기
 								</a>
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('전북 군산시 나포면 서왕길 34')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
 								<button
 									class="btn btn-map"
 									onclick="openMap('전북 군산시 나포면 서왕길 34')">
@@ -324,28 +333,8 @@
 										stroke-width="2">
 										<path
 											d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg
-									>0507-1334-2443
+									>전화하기
 								</a>
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('전북 군산시 한밭로 21')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
 								<button
 									class="btn btn-map"
 									onclick="openMap('전북 군산시 한밭로 21')">
@@ -361,7 +350,7 @@
 											cx="12"
 											cy="10"
 											r="3"></circle></svg
-									>위치 찾기
+									>길찾기
 								</button>
 								<a
 									href="https://pcmap.place.naver.com/restaurant/1031530054/review/visitor?additionalHeight=76&from=map&fromPanelNum=1&locale=ko&timestamp=202503020227"
@@ -385,27 +374,7 @@
 						<td class="info-col">
 							<div class="place-name">은파호수공원</div>
 							<div class="place-address">전북 군산시 나운동 1223-4</div>
-							<div class="button-group">
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('전북 군산시 나운동 1223-4')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
+							<div class="button-group single-row">
 								<button
 									class="btn btn-map"
 									onclick="openMap('전북 군산시 나운동 1223-4')">
@@ -421,7 +390,7 @@
 											cx="12"
 											cy="10"
 											r="3"></circle></svg
-									>위치 찾기
+									>길찾기
 								</button>
 								<a
 									href="https://pcmap.place.naver.com/place/21070906/review/visitor?entry=bmp&from=map&fromPanelNum=2&locale=ko&timestamp=202503020227"
@@ -457,28 +426,8 @@
 										stroke-width="2">
 										<path
 											d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg
-									>063-461-4166
+									>전화하기
 								</a>
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('전북 군산시 청소년회관로 75')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
 								<button
 									class="btn btn-map"
 									onclick="openMap('전북 군산시 청소년회관로 75')">
@@ -494,7 +443,7 @@
 											cx="12"
 											cy="10"
 											r="3"></circle></svg
-									>위치 찾기
+									>길찾기
 								</button>
 							</div>
 						</td>
@@ -522,28 +471,8 @@
 										stroke-width="2">
 										<path
 											d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg
-									>0507-1369-2905
+									>전화하기
 								</a>
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('전북 군산시 미원로 87')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
 								<button
 									class="btn btn-map"
 									onclick="openMap('전북 군산시 미원로 87')">
@@ -559,7 +488,7 @@
 											cx="12"
 											cy="10"
 											r="3"></circle></svg
-									>위치 찾기
+									>길찾기
 								</button>
 								<a
 									href="https://pcmap.place.naver.com/restaurant/17150328/review/visitor?entry=bmp&from=map&fromPanelNum=2&locale=ko&timestamp=202503020225"
@@ -583,27 +512,7 @@
 						<td class="info-col">
 							<div class="place-name">경암동 철길마을(주차장)</div>
 							<div class="place-address">전북 군산시 경암동 635-25</div>
-							<div class="button-group">
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('전북 군산시 경암동 635-25')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
+							<div class="button-group single-row">
 								<button
 									class="btn btn-map"
 									onclick="openMap('전북 군산시 경암동 635-25')">
@@ -619,7 +528,7 @@
 											cx="12"
 											cy="10"
 											r="3"></circle></svg
-									>위치 찾기
+									>길찾기
 								</button>
 								<a
 									href="https://pcmap.place.naver.com/place/31825959/review/visitor?additionalHeight=76&from=map&fromPanelNum=1&locale=ko&timestamp=202503020231"
@@ -655,28 +564,8 @@
 										stroke-width="2">
 										<path
 											d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg
-									>010-7428-8989
+									>전화하기
 								</a>
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('전북 군산시 옥도면 선유북길 111')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
 								<button
 									class="btn btn-map"
 									onclick="openMap('전북 군산시 옥도면 선유북길 111')">
@@ -692,7 +581,7 @@
 											cx="12"
 											cy="10"
 											r="3"></circle></svg
-									>위치 찾기
+									>길찾기
 								</button>
 								<a
 									href="https://pcmap.place.naver.com/place/1011269641/review/visitor?entry=bmp&from=map&fromPanelNum=2&locale=ko&timestamp=202503020238"
@@ -714,7 +603,7 @@
 					<tr>
 						<td class="time-col">간식</td>
 						<td class="info-col">
-							<div class="place-name">장자도 호랑마을1호점</div>
+							<div class="place-name">장자도 호떡마을1호점</div>
 							<div class="place-address">전북 군산시 옥도면 장자도1길 75-1</div>
 							<div class="button-group">
 								<a
@@ -728,28 +617,8 @@
 										stroke-width="2">
 										<path
 											d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg
-									>0507-1335-3627
+									>전화하기
 								</a>
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('전북 군산시 옥도면 장자도1길 75-1')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
 								<button
 									class="btn btn-map"
 									onclick="openMap('전북 군산시 옥도면 장자도1길 75-1')">
@@ -765,7 +634,7 @@
 											cx="12"
 											cy="10"
 											r="3"></circle></svg
-									>위치 찾기
+									>길찾기
 								</button>
 								<a
 									href="https://pcmap.place.naver.com/restaurant/1073004198/review/visitor?entry=bmp&from=map&fromPanelNum=2&locale=ko&timestamp=202503020234"
@@ -787,32 +656,12 @@
 					<tr>
 						<td class="time-col">복귀</td>
 						<td class="info-col">
-							<div class="place-name">대전새빛교회</div>
-							<div class="place-address">대전 서구 계룡로264번길 73</div>
-							<div class="button-group">
-								<button
-									class="btn btn-copy"
-									onclick="copyToClipboard('대전 서구 계룡로264번길 73')">
-									<svg
-										class="icon"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2">
-										<rect
-											x="9"
-											y="9"
-											width="13"
-											height="13"
-											rx="2"
-											ry="2"></rect>
-										<path
-											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg
-									>주소 복사
-								</button>
+							<div class="place-name">대전새벽교회</div>
+							<div class="place-address">대전 서구 계룡로 264번길 73</div>
+							<div class="button-group single-row">
 								<button
 									class="btn btn-map"
-									onclick="openMap('대전 서구 계룡로264번길 73')">
+									onclick="openMap('대전 서구 계룡로 264번길 73')">
 									<svg
 										class="icon"
 										viewBox="0 0 24 24"
@@ -825,7 +674,7 @@
 											cx="12"
 											cy="10"
 											r="3"></circle></svg
-									>위치 찾기
+									>길찾기
 								</button>
 							</div>
 						</td>
